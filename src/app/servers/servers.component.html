@@ -1,0 +1,35 @@
+<label>Server Name</label>
+<input 
+    type="text" 
+    class="form-control"
+    [(ngModel)]="serverName">
+<button 
+    class="btn btn-primary" 
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer()">
+        Add Server
+</button>
+<br>
+<label>Username</label>
+<input 
+    type="text"
+    class="form-control"
+    [(ngModel)]="username">
+<button 
+    class="btn btn-primary"
+    [disabled]="(username=='')"
+    (click)="onUsernameReset()">
+Reset Username</button>
+<p>Username is {{ username }}</p>
+
+<p *ngIf="serverCreated">Server was created, server Name is {{ serverName }}</p>
+<button 
+    class="btn btn-primary"
+    (click)="onToggleDetails()">Display Details</button>
+<p *ngIf="showSecret">Details are specified in here.</p>
+<p 
+    *ngFor="let click of buttonClicks" 
+    [ngStyle]="{backgroundColor: click >= 5 ? 'lightblue' : 'transparent'}"
+    [ngClass]="{'white-text': click >= 5}">{{ click }}</p>
+<app-server *ngFor="let server of servers"></app-server>
+
